@@ -1,5 +1,5 @@
 import unittest
-from htmlnode import HTMLNode
+from htmlnode import HTMLNode, LeafNode
 
 class TestHTMLNode(unittest.TestCase):
     def test_initialization_defaults(self):
@@ -34,6 +34,38 @@ class TestHTMLNode(unittest.TestCase):
         node = HTMLNode()
         with self.assertRaises(NotImplementedError):
             node.to_html()
+
+
+class TestLeafNode(unittest.TestCase):
+    def test_leaf_to_html_p(self):
+        node = LeafNode("p", "Hello, world!")
+        self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
+
+    def test_leaf_to_html_with_tag_and_props(self):
+        node = LeafNode("span", "Click me", props={"class": "btn", "id": "click"})
+        self.assertEqual(node.to_html(), '<span class="btn" id="click">Click me</span>')
+
+    def test_leaf_to_html_without_tag(self):
+        node = LeafNode(None, "Just text")
+        self.assertEqual(node.to_html(), "Just text")
+
+    def test_leaf_to_html_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            LeafNode("div", None)
+
+    def test_leaf_repr(self):
+        node = LeafNode("b", "Bold", props={"style": "font-weight:bold;"})
+        expected = "HTMLNode('b', 'Bold', None, {'style': 'font-weight:bold;'})"
+        self.assertEqual(repr(node), expected)
+
+    def test_leaf_props_to_html_none(self):
+        node = LeafNode("em", "Italic", props=None)
+        self.assertEqual(node.props_to_html(), "")
+
+    def test_leaf_props_to_html_empty_dict(self):
+        node = LeafNode("em", "Italic", props={})
+        self.assertEqual(node.props_to_html(), "")
+
 
 if __name__ == "__main__":
     unittest.main()
