@@ -171,15 +171,15 @@ class TestInlineMarkdown(unittest.TestCase):
         )
         self.assertListEqual(
             [
-                TextNode("This is ", TextType.TEXT),
+                TextNode("This is ", TextType.PLAIN),
                 TextNode("text", TextType.BOLD),
-                TextNode(" with an ", TextType.TEXT),
+                TextNode(" with an ", TextType.PLAIN),
                 TextNode("italic", TextType.ITALIC),
-                TextNode(" word and a ", TextType.TEXT),
+                TextNode(" word and a ", TextType.PLAIN),
                 TextNode("code block", TextType.CODE),
-                TextNode(" and an ", TextType.TEXT),
+                TextNode(" and an ", TextType.PLAIN),
                 TextNode("image", TextType.IMAGE, "https://i.imgur.com/zjjcJKZ.png"),
-                TextNode(" and a ", TextType.TEXT),
+                TextNode(" and a ", TextType.PLAIN),
                 TextNode("link", TextType.LINK, "https://boot.dev"),
             ],
             nodes,
