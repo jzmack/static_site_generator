@@ -14,6 +14,7 @@ Here's the deal, **I like Tolkien**.
 - [Why Tom Bombadil Was a Mistake](/blog/tom)
 - [The Unparalleled Majesty of "The Lord of the Rings"](/blog/majesty)
 - [Aragorn Page](/blog/aragorn)
+- [Top 5 Fights in Game of Thrones](/blog/top-fights)
 
 ## Reasons I like Tolkien
 
