@@ -1,12 +1,14 @@
-# Tolkien Fan Club
+# My lil man cave 
 
-![JRR Tolkien sitting](/images/tolkien.png)
+![Me](/images/me.jpg)
 
-Here's the deal, **I like Tolkien**.
+Welcome to my lil man cave personal blog whatever you wanna call is. Here, I'll share some stuff I find interesting. This could be anything from tech, video games, hip hop, or stuff related to A Song of Ice and Fire. 
 
-> "I am in fact a Hobbit in all but size."
+Special thanks to [this course](https://www.boot.dev/courses/build-static-site-generator-python) on [Boot.dev](https://www.boot.dev) that made this site possible. 
+
+> "The only thing worth writing about is the human heart in conflict with itself."
 >
-> -- J.R.R. Tolkien
+> -- William Faulkner
 
 ## Blog posts
 
@@ -44,5 +46,3 @@ func main(){
 ```
 
 Want to get in touch? [Contact me here](/contact).
-
-This site was generated with a custom-built [static site generator](https://www.boot.dev/courses/build-static-site-generator-python) from the course on [Boot.dev](https://www.boot.dev).

@@ -1,5 +1,5 @@
 body {
-  background-color: #1f1c25;
+  background-color: #18161d;
   color: #f0e6d1;
   font-family: "Luminari", "Georgia", serif;
   line-height: 1.7;
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #6f5edd;
+  color: #978be9;
   margin-top: 24px;
   margin-bottom: 16px;
   text-shadow: 2px 2px 4px #000;
@@ -45,14 +45,14 @@ h6 {
 }
 
 a {
-  color: #34f164;
+  color: #fb9f44;
   text-decoration: none;
   border-bottom: 2px solid #8ae06d;
 }
 
 a:hover {
-  color: #f4a261;
-  border-color: #f4a261;
+  color: #61f472;
+  border-color: #61f48b;
 }
 
 ul,
@@ -61,7 +61,7 @@ ol {
 }
 
 code {
-  background-color: #3c3c42;
+  background-color: #2c2c31;
   border-radius: 6px;
   color: #e9c46a;
   padding: 0.4em 0.6em;

@@ -22,7 +22,7 @@ Many consider season 4 of Game of Thrones to be its peak, and this scene is one 
 
 ## Sandor vs. Brienne of Tarth (Season 4 Episode 10)
 
-![Brienne vs Sandor](/images/brienne-sandor)
+![Brienne vs Sandor](/images/brienne-sandor.jpg)
 
 These Clegane’s sure get into a lot of fights. At the center of this clash, we have Arya Stark, who was kidnapped by the Hound. These two end up spending a lot of time together, eventually forming a bond. The two have a lot in common, I mean they really like killing people. On the other side we have Brienne, who swore an oath to Catelyn Stark that she would find her children and keep them safe. When Brienne finally catches up with Arya, she is naturally only met with suspicion. Arya's journey this far was rough. Being kidnapped, killing people, and watching as the hound robs the innocent. Purely good people like Brienne are an anomaly in Westeros which explains why Arya is not quick to trust her. The fight itself was sudden, bloody, and brutal. These two are juggernauts and some of the best fighters in Westeros and they beat the absolute piss and shit out of each other. The Hound grabs her Valyrian steel blade, Brienne kicks him in the nuts, the Hound... does the same. But unlike the rest of these fights, there is a clear winner. Brienne gets the upper hand with a rock and goes to town on the Hound. It is after this fight that we learn that Arya cares about the Hound when she does not execute him at his request.
 
