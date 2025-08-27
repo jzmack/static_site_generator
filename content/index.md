@@ -14,6 +14,7 @@ Just thought this quote was cool as it inspired the entire ASOIAF series.
 
 - [Top 5 Fights in Game of Thrones](/blog/top-fights)
 - [God of War Ragnarok Review](/blog/gow-ragnorak-review)
+- [Elden Ring Review](/blog/elden-ring-review)
 
 ## Reasons I like A Song of Ice and Fire
 
