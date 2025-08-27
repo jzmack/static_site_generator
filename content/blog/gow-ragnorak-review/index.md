@@ -1,4 +1,5 @@
 # God of War: Ragnarök – Full Review
+
 _by Jake Mackin 2025_
 
 [< Back Home](/)
