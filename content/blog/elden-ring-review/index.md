@@ -4,7 +4,7 @@ _by Jake Mackin 2025_
 
 [< Back Home](/)
 
-![ER Cover](/images/elden-ring-cover.jpg)
+![ER Cover](/images/elden-ring-cover.avif)
 
 The game for gamers, hardcore and even casual alike. Never have I been so captivated by a game over and over, and I didn't even know a lick about the lore until about my third playthrough when I came across VaatiVidya on YouTube. Then I was captivated yet all over again. What is it about Elden Ring that makes it game of the year? Hell, it could be game of the decade at this point. How could a game with such brutal and punishing mechanics be so replayable? Allow me to elaborate.
 
