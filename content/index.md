@@ -16,6 +16,7 @@ Just thought this quote was cool as it inspired the entire ASOIAF series.
 - [God of War Ragnarok Review](/blog/gow-ragnorak-review)
 - [Elden Ring Review](/blog/elden-ring-review)
 - [Horizon Zero Dawn Review](/video-games/horizon-zero-dawn)
+- [The Witcher 3](/video-games/witcher-wildhunt)
 - [Video Games](/video-games)
 
 ## Reasons I like A Song of Ice and Fire
