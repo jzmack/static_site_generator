@@ -17,3 +17,15 @@ CDProjekt Red does it again...
 ![witcher-triss](/images/witcher-triss.jpg)
 
 ![witcher-wolves](/images/witcher-wolves.jpg)
+
+![witcher-bear](/images/witcher-bear.jpg)
+
+![witcher-boat](/images/witcher-boat.jpg)
+
+![witcher-ciri](/images/witcher-ciri.jpg)
+
+![witcher-decap](/images/witcher-decap.jpg)
+
+![witcher-pretty](/images/witcher-pretty.jpg)
+
+![witcher-stab](/images/witcher-stab.jpg)
