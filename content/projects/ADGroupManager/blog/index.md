@@ -16,9 +16,11 @@ The approximate time it takes to RDP into a server that has AD Users and Groups,
 
 All it takes to run the script is to open PowerShell, populate the userlist.txt file with the users, and run it with the correct parameters. The script can add about **5 users per second**.
 
-To give an example, we recently had a request to add 189 users to a group. Doing this manually would have taken approximately **3841 seconds** or **64 minutes**. Running the script took about **40 seconds** to add all the users. Therefore, it's about **98% faster** to use the script vs. doing this task manually.
+To give an example, we recently had a request to add 189 users to a group. Doing this manually would have taken approximately **3841 seconds** or **64 minutes**. Running the script took about **40 seconds** to add all the users. Therefore, the script is faster by about a factor of **96%** resulting in **98% time saved**. With the amount of requests we get like this, using this script is paying off dividends in the form of valuable time.
 
 ## Ease of use
+
+This module is availabe for free on the PowerShell gallery. There are a few prerequisites such as having delegated control to the OU you need and a computer with RSAT so you can access AD Users and Computers. 
 
 I was able to get people who never scripted before to install and use this module to save them time. Here's a real email sent out to my team.
 
@@ -26,4 +28,4 @@ I was able to get people who never scripted before to install and use this modul
 Thanks to Jake and his wonderful AD scripting tool what would’ve taken a decent amount of time took less than a minute. 189 accounts added just like that.
 ```
 
-This is why I do it. To make tools that aren't just useful for me, but to save someone else their valuable time. 
+This is why I do it. To make tools that aren't just useful for me, but to save someone else their most valuable time. 

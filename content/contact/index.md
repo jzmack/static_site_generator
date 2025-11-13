@@ -2,8 +2,9 @@
 
 [< Back Home](/)
 
-Give me a call anytime to chat about Tolkien!
+- [LinkedIn](www.linkedin.com/in/jake-mackin)
+- [GitHub](https://github.com/jzmack)
+- [Discord](https://discord.gg/D8xb5MW)
 
-`555-555-5555`
 
-**"Váya márië."**
+**The Night is dark and full of terror**
