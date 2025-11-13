@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> ADGroupManager Blog post </title>
+    <link href="/static_site_generator/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <article>
+        <div><h1>ADGroupManager Blog post</h1><p><a href="/static_site_generator/">< Back Home</a></p><h2>Intro</h2><p>This module came about as our organization was diving deeper into network segmentation to tighten up security. Certain devices needed to use service accounts, be in specific VLANs, AD groups, etc. As a result, my team, who supports the WLAN across the enterprise, would start getting requests that service accounts or device accounts be added to a certain AD group to get access to the network resources that they need over the Wi-Fi.</p><p>A lot of times these tickets would have long lists of users, sometimes over 100. So we needed a quick and efficient to add long lists of users to a group that we specify, because manually doing this in AD Users & Computers was painful and took way too long. On top of that, we would need a way to verify that the user in in the correct group which this module also includes.</p><h2>Time Saved</h2><p>I calculated how long it would take for us to manually add users in Active Directory and here were my results. These are approximations but still gives a good idea of how much time is saved using this script vs. doing this task manually.</p><p>The approximate time it takes to RDP into a server that has AD Users and Groups, open AD, find the user, and add them to a group takes about <b>81 seconds</b> to add the first users, and then about <b>20 seconds</b> for every additional user.</p><p>All it takes to run the script is to open PowerShell, populate the userlist.txt file with the users, and run it with the correct parameters. The script can add about <b>5 users per second</b>.</p><p>To give an example, we recently had a request to add 189 users to a group. Doing this manually would have taken approximately <b>3841 seconds</b> or <b>64 minutes</b>. Running the script took about <b>40 seconds</b> to add all the users. Therefore, it's about <b>98% faster</b> to use the script vs. doing this task manually.</p><h2>Ease of use</h2><p>I was able to get people who never scripted before to install and use this module to save them time. Here's a real email sent out to my team.</p><pre><code>lain
+Thanks to Jake and his wonderful AD scripting tool what would’ve taken a decent amount of time took less than a minute. 189 accounts added just like that.
+</code></pre><p>This is why I do it. To make tools that aren't just useful for me, but to save someone else their valuable time.</p></div>
+    </article>
+</body>
+
+</html>
