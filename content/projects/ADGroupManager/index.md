@@ -13,7 +13,7 @@ This project is a PowerShell module automates adding long lists of users to spec
 
 Example adding 5 users:
 
-```PowerShell
+```
 PS C:\Users\mackinjz> AddToGroup -list -group "WLAN Users"
 Successfully added User1 (user) to the WLAN Users group.
 Successfully added User2 (user) to the WLAN Users group.
@@ -27,6 +27,7 @@ Successfully added User5 (user) to the WLAN Users group.
 Our previous process managing AD group memberships was time-consuming, click intensive, and exhausting for a long list of users. See the next section to see the stats on how much time is saved. This module serves as a great example of how putting in some up front work to automate a task can return long term dividends.
 
 ### Time saving impact
+
 - **Manually:** It takes **~81s** for the first user and **~21s** per additional user
 
 - **Scripted:** Processes **~5 users/sec**
