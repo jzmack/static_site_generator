@@ -23,6 +23,8 @@ Welcome to my lil man cave, personal blog, whatever you wanna call it. Here, I'l
 - [Ice and Fire](/ice-and-fire)
 - [Hip Hop & Music (in progress)](/)
 
+---
+
 Special thanks to [this course](https://www.boot.dev/courses/build-static-site-generator-python) on [Boot.dev](https://www.boot.dev) that made this site possible. 
 
 Want to get in touch? [Contact me here](/contact).
