@@ -24,8 +24,8 @@ This module is availabe for free on the PowerShell gallery. There are a few prer
 
 I was able to get people who never scripted before to install and use this module to save them time. Here's a real email sent out to my team.
 
-```plain
-Thanks to Jake and his wonderful AD scripting tool what would’ve taken a decent amount of time took less than a minute. 189 accounts added just like that.
-```
+>
+>"Thanks to Jake and his wonderful AD scripting tool what would’ve taken a decent amount of time took less than a minute. 189 accounts added just like that."
+>-- One happy co-worker
 
 This is why I do it. To make tools that aren't just useful for me, but to save someone else their most valuable time. 
