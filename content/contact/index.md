@@ -2,7 +2,7 @@
 
 [< Back Home](/)
 
-- [LinkedIn](www.linkedin.com/in/jake-mackin)
+- [LinkedIn](https://www.linkedin.com/in/jake-mackin)
 - [GitHub](https://github.com/jzmack)
 - [Discord](https://discord.gg/D8xb5MW)
 

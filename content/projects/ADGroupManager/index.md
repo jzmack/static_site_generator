@@ -13,7 +13,7 @@ This project is a PowerShell module automates adding long lists of users to spec
 
 Example adding 5 users:
 
-```PS
+```PowerShell
 PS C:\Users\mackinjz> AddToGroup -list -group "WLAN Users"
 Successfully added User1 (user) to the WLAN Users group.
 Successfully added User2 (user) to the WLAN Users group.
