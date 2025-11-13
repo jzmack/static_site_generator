@@ -37,6 +37,4 @@ Our previous process managing AD group memberships was time-consuming, click int
 - **Summary:** Running the script is **~96%** faster than doing this manually, resulting in 
 ~**98%** less time adding users to groups
 
-- $
-\text{Speedup Factor} = \frac{\text{Manual}{\text{ Time}}}{\text{Automated}{\text{ Time}}} \text{ so we got }\frac{3841 \text{ s}}{40 \text{ s}} \approx 96.0 \text{x faster}
-$
+![Speed UP](/images/speed-up-factor.png)
