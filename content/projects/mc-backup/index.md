@@ -22,7 +22,7 @@ Refer to the image above to help follow along these next 4 steps. These are the 
 
 #### Step 1: Logging into the conductor
 
-The API endpoint for this is **https://<controller_ip>:4343/v1/api/login**
+The API endpoint for this is ```/v1/api/login```
 
 This endpoint requires that a **username** and **password** be passed as parameters.
 
