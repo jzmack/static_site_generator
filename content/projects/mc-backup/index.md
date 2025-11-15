@@ -30,6 +30,18 @@ Using a GET to this endpoint, the conductor will return a JSON object containing
 
 Here's my full function for logging in:
 
+```
+def login(ip, username, password):
+    print(f"Attempting to log into {ip}...")
+    r = requests.get(url="https://" + ip + f":4343/v1/api/login?username={username}&password={password}", verify=False)
+    logindata = r.json()
+    token = logindata["_global_result"]["X-CSRF-Token"]
+    uid = logindata["_global_result"]["UIDARUBA"]
+    cookies = {"SESSION": uid}
+    print(logindata["_global_result"]["status_str"])
+    return(token, cookies)
+```
+
 #### Step 2: Creating a backup running config and flash
 
 These is kind of two steps lumped into one, but I'll explain both. First we need a function to make POST requests to the conductor. I'll specify which parameters we will set further down.
