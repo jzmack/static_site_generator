@@ -72,6 +72,15 @@ def api_post(url_path, token, cookies, ip, body, params):
 
 Now we need to create a backup of the running config of the Conductor on to the flash of the device. To do this, the endpoint is `/v1/configuration/object/copy_running_flash`. This is a POST request and in the body of the request, you can specify the filename of the backed up config file. Here's my function for this:
 
+```
+def copy_run_flash(ip, hostname, token, cookies):
+    api_endpoint = r"/v1/configuration/object/copy_running_flash"
+    body = {"filename": f"{hostname}_backup_config.cfg"}
+    params = {"config_path":"/md"}
+    return api_post(api_endpoint, token, cookies, ip, body, params)
+
+```
+
 Next, we create the flash backup with the following endpoint: `/v1/configuration/object/flash_backup`. Similar to the last endpoint, we will make a POST request, and in the body we are specifying what we are backing up and what we want the filename to be. See the function below to see how I structured the parameters. Note that `flash` for filename actually becomes `flash.tar.gz`. Had to learn that one the hard way.
 
 ```
