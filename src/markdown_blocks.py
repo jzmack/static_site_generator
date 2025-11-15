@@ -15,22 +15,47 @@ class BlockType(Enum):
 
 
 def markdown_to_blocks(markdown):
-    blocks = markdown.split("\n\n")
+    blocks = []
+    current_block = []
+    lines = markdown.split("\n")
+    in_code_block = False
+    
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        
+        # Check if we're entering or exiting a code block
+        if line.strip().startswith("```"):
+            in_code_block = not in_code_block
+        
+        # If we hit a blank line and we're NOT in a code block, end current block
+        if line.strip() == "" and not in_code_block:
+            if current_block:
+                blocks.append("\n".join(current_block))
+                current_block = []
+        else:
+            current_block.append(line)
+        
+        i += 1
+    
+    # Don't forget the last block
+    if current_block:
+        blocks.append("\n".join(current_block))
+    
+    # Filter and strip blocks
     filtered_blocks = []
     for block in blocks:
-        if block == "":
-            continue
-        block = block.strip()
-        filtered_blocks.append(block)
+        if block.strip():
+            filtered_blocks.append(block.strip())
+    
     return filtered_blocks
-
 
 def block_to_block_type(block):
     lines = block.split("\n")
 
     if block.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
         return BlockType.HEADING
-    if len(lines) > 1 and lines[0].startswith("```") and lines[-1].startswith("```"):
+    if block.startswith("```") and block.endswith("```"):
         return BlockType.CODE
     if block.startswith(">"):
         for line in lines:
@@ -111,7 +136,20 @@ def heading_to_html_node(block):
 def code_to_html_node(block):
     if not block.startswith("```") or not block.endswith("```"):
         raise ValueError("invalid code block")
-    text = block[4:-3]
+    
+    # Remove the opening ``` and everything up to the first newline
+    # Remove the closing ```
+    text = block[3:-3].strip()  # Remove ``` from both ends
+    
+    # If there's a language specifier on the first line, remove it
+    if '\n' in text:
+        lines = text.split('\n', 1)
+        # First line might be language specifier (e.g., "python")
+        if lines[0] and not ' ' in lines[0]:
+            text = lines[1] if len(lines) > 1 else ''
+        else:
+            text = text
+    
     raw_text_node = TextNode(text, TextType.TEXT)
     child = text_node_to_html_node(raw_text_node)
     code = ParentNode("code", [child])

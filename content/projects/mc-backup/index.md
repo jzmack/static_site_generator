@@ -48,6 +48,28 @@ These is kind of two steps lumped into one, but I'll explain both. First we need
 
 Here's my function for making POST requests:
 
+```
+def api_post(url_path, token, cookies, ip, body, params):
+    print("Making a POST to: " + ip + url_path)
+    
+    api_request = requests.post(
+        url="https://" + ip + url_path,
+        headers={
+            "X-CSRF-Token": token,
+            "Content-Type": "application/json"
+        },
+        verify=False,
+        cookies=cookies,
+        params=params,
+        json=body)
+
+    print(f"STATUS: {api_request}")
+    print(f"POST RESPONSE: {api_request.text}")
+    
+    # Return True if successful (2xx status code)
+    return api_request.status_code >= 200 and api_request.status_code < 300
+```
+
 Now we need to create a backup of the running config of the Conductor on to the flash of the device. To do this, the endpoint is `/v1/configuration/object/copy_running_flash`. This is a POST request and in the body of the request, you can specify the filename of the backed up config file. Here's my function for this:
 
 Next, we create the flash backup with the following endpoint: **/v1/configuration/object/flash_backup**. Similar to the last endpoint, we will make a POST request, and in the body we are specifying what we are backing up and what we want the filename to be. See the function below to see how I structured the parameters. Note that **flash** for filename actually becomes **flash.tar.gz**. Had to learn that one the hard way.
@@ -97,3 +119,13 @@ Here's what that function looks like:
 - https://arubanetworking.hpe.com/techdocs/ArubaOS-8.x-Books/AOS-8.x-API-Guide.pdf
 
 - The swagger interface on the Conductors are super helpful too
+
+
+## Testing out how this looks
+
+`code_with_underscores`
+**bold_with_underscores**
+_italic text_
+**bold with `code` inside**
+[link with `code`](https://arubanetworking.hpe.com/techdocs/ArubaOS-8.x-Books/AOS-8.x-API-Guide.pdf)
+![image](/images/IMG_8921.jpg)
