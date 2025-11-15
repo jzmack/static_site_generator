@@ -24,7 +24,7 @@ Refer to the image above to help follow along these next 4 steps. These are the 
 
 The API endpoint for this is `/v1/api/login`
 
-This endpoint requires that a **username** and **password** be passed as parameters.
+This endpoint requires that a `username` and `password` be passed as parameters.
 
 Using a GET to this endpoint, the conductor will return a JSON object containing an X-CSRF-Token and Cookies, which can be used and passed into further API calls.
 
@@ -48,7 +48,7 @@ These is kind of two steps lumped into one, but I'll explain both. First we need
 
 Here's my function for making POST requests:
 
-Now we need to create a backup of the running config of the Conductor on to the flash of the device. To do this, the endpoint is **/v1/configuration/object/copy_running_flash**. This is a POST request and in the body of the request, you can specify the filename of the backed up config file. Here's my function for this:
+Now we need to create a backup of the running config of the Conductor on to the flash of the device. To do this, the endpoint is `/v1/configuration/object/copy_running_flash`. This is a POST request and in the body of the request, you can specify the filename of the backed up config file. Here's my function for this:
 
 Next, we create the flash backup with the following endpoint: **/v1/configuration/object/flash_backup**. Similar to the last endpoint, we will make a POST request, and in the body we are specifying what we are backing up and what we want the filename to be. See the function below to see how I structured the parameters. Note that **flash** for filename actually becomes **flash.tar.gz**. Had to learn that one the hard way.
 
