@@ -52,6 +52,17 @@ Now we need to create a backup of the running config of the Conductor on to the 
 
 Next, we create the flash backup with the following endpoint: **/v1/configuration/object/flash_backup**. Similar to the last endpoint, we will make a POST request, and in the body we are specifying what we are backing up and what we want the filename to be. See the function below to see how I structured the parameters. Note that **flash** for filename actually becomes **flash.tar.gz**. Had to learn that one the hard way.
 
+```
+def create_flash_backup(ip, hostname, token, cookies):
+    api_endpoint = r"/v1/configuration/object/flash_backup"
+    body = {
+        "backup_flash": "flash",
+        "filename": "flash"
+        }
+    params = {"config_path": "/md"}
+    return api_post(api_endpoint, token, cookies, ip, body, params)
+```
+
 
 #### Step 3. Transfer files to remote server using SCP
 
