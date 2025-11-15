@@ -99,7 +99,31 @@ def create_flash_backup(ip, hostname, token, cookies):
 
 Now that the files that I want to back up are created, it's time to securely copy them to a remote server. In my case, we had a VM running Windows Server 2019 and an SCP service running. To authenticate, I used an account local to the SCP service. I configured the SCP user to have a home directory exactly where I want the backup files to live.
 
-On the Conductor, the handy API endpoint is `/v1/configuration/object/copy_flash_scp`, which is used twice within the same function using two different bodies in the POST requests (one for each file). The resturning result is either a string saying it was a success or a failure. Note the differences between the source and destination filenames. I used the hostname to keep track of which Conductor the backup belonged to.
+On the Conductor, the handy API endpoint is `/v1/configuration/object/copy_flash_scp`, which is used twice within the same function using two different bodies in the POST requests (one for each file). The returning result is either a string saying it was a success or a failure. Note the differences between the source and destination file names. I used the hostname to keep track of which Conductor the backup belonged to.
+
+```
+def scp_to_swair(ip, hostname, token, cookies, scp_user, scp_pass):
+    api_endpoint = r"/v1/configuration/object/copy_flash_scp"
+    body1 = {
+        "srcfilename": "flash.tar.gz",
+        "scphost": "10.0.0.100",
+        "username": scp_user,
+        "destfilename": f"{hostname}_flash.tar.gz",
+        "passwd": scp_pass
+        }
+    body2 = {
+        "srcfilename": f"{hostname}_backup_config.cfg",
+        "scphost": "10.0.0.100",
+        "username": scp_user,
+        "destfilename": f"{hostname}_backup_config.cfg",
+        "passwd": scp_pass
+        }
+    params = {"config_path": "/md"}
+    result1 = api_post(api_endpoint, token, cookies, ip, body1, params)
+    result2 = api_post(api_endpoint, token, cookies, ip, body2, params)
+    return result1 and result2
+
+```
 
 #### Step 4: Cleanup and logout
 
@@ -109,7 +133,25 @@ On the Conductor, the endpoint is `/v1/configuration/object/tar_flash_clean`, wh
 
 Here's the function I wrote to do that:
 
+```
+def tar_flash_clean(ip, hostname, token, cookies):
+    api_endpoint = r"/v1/configuration/object/tar_flash_clean"
+    body = {}
+    params = {"config_path": "/md"}
+    return api_post(api_endpoint, token, cookies, ip, body, params)
+```
+
 Lastly, we log out of the conductor by making a GET to the `/v1/api/logout` API endpoint. Here's the code function I made for that. In this, I use an `api_get` function that look very similar to the function to login from **Step 1**
+
+```
+def logout(ipAddr, token, cookies):
+    urlPath = ":4343/v1/api/logout"
+    print("Logging out...")
+    logout_data = api_get(urlPath, token, cookies, ipAddr)
+    logout_text = logout_data["_global_result"]["status_str"]
+    print(logout_text + "\n\n")
+
+```
 
 #### Email notifications
 
@@ -119,28 +161,56 @@ All of the successes (and hopefully non failures) get composed into an email usi
 
 Here's what that function looks like:
 
+```
+def send_email_report(results, smtp_server, smtp_port, sender_email, recipient_email):
+    """Send email report with backup results via SMTP relay"""
+    
+    # Count successes and failures
+    success_count = sum(1 for r in results if r['status'] == 'SUCCESS')
+    failure_count = len(results) - success_count
+    
+    # Create email
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = recipient_email
+    msg['Subject'] = f"Mobility Conductor Backup Report - {get_timestamp()}"
+    
+    # Build email body
+    body = f"""Mobility Conductor Backup Report
+Generated: {get_timestamp()}
+
+Summary:
+- Total Conductors: {len(results)}
+- Successful: {success_count}
+- Failed: {failure_count}
+
+Detailed Results:
+{'='*60}
+"""
+    
+    for result in results:
+        status_symbol = "✓" if result['status'] == 'SUCCESS' else "✗"
+        body += f"\n{status_symbol} {result['hostname']} ({result['ip']})\n"
+        body += f"   Status: {result['status']}\n"
+        if result['message']:
+            body += f"   Details: {result['message']}\n"
+    
+    msg.attach(MIMEText(body, 'plain'))
+    
+    # Send email via SMTP relay (no authentication needed)
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.send_message(msg)
+        print(f"\nEmail report sent successfully to {recipient_email}")
+    except Exception as e:
+        print(f"\nFailed to send email report: {e}")
+```
+
 #### Cron Job
 
 
 
 ### References
 
-- https://arubanetworking.hpe.com/techdocs/ArubaOS-8.x-Books/AOS-8.x-API-Guide.pdf
-
+- [Link to AOS 8.x API Guide](https://arubanetworking.hpe.com/techdocs/ArubaOS-8.x-Books/AOS-8.x-API-Guide.pdf)
 - The swagger interface on the Conductors are super helpful too
-
-
-## Testing out how this looks
-
-
-`code_with_underscores`
-
-**bold_with_underscores**
-
-_italic text_
-
-`bold with `code` inside`
-
-[link with `code`](https://arubanetworking.hpe.com/techdocs/ArubaOS-8.x-Books/AOS-8.x-API-Guide.pdf)
-
-![image](/images/IMG_8921.jpg)
