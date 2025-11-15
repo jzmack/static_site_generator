@@ -72,7 +72,7 @@ def api_post(url_path, token, cookies, ip, body, params):
 
 Now we need to create a backup of the running config of the Conductor on to the flash of the device. To do this, the endpoint is `/v1/configuration/object/copy_running_flash`. This is a POST request and in the body of the request, you can specify the filename of the backed up config file. Here's my function for this:
 
-Next, we create the flash backup with the following endpoint: **/v1/configuration/object/flash_backup**. Similar to the last endpoint, we will make a POST request, and in the body we are specifying what we are backing up and what we want the filename to be. See the function below to see how I structured the parameters. Note that **flash** for filename actually becomes **flash.tar.gz**. Had to learn that one the hard way.
+Next, we create the flash backup with the following endpoint: `/v1/configuration/object/flash_backup`. Similar to the last endpoint, we will make a POST request, and in the body we are specifying what we are backing up and what we want the filename to be. See the function below to see how I structured the parameters. Note that `flash` for filename actually becomes `flash.tar.gz`. Had to learn that one the hard way.
 
 ```
 def create_flash_backup(ip, hostname, token, cookies):
@@ -90,23 +90,23 @@ def create_flash_backup(ip, hostname, token, cookies):
 
 Now that the files that I want to back up are created, it's time to securely copy them to a remote server. In my case, we had a VM running Windows Server 2019 and an SCP service running. To authenticate, I used an account local to the SCP service. I configured the SCP user to have a home directory exactly where I want the backup files to live.
 
-On the Conductor, the handy API endpoint is **/v1/configuration/object/copy_flash_scp**, which is used twice within the same function using two different bodies in the POST requests (one for each file). The resturning result is either a string saying it was a success or a failure. Note the differences between the source and destination filenames. I used the hostname to keep track of which Conductor the backup belonged to.
+On the Conductor, the handy API endpoint is `/v1/configuration/object/copy_flash_scp`, which is used twice within the same function using two different bodies in the POST requests (one for each file). The resturning result is either a string saying it was a success or a failure. Note the differences between the source and destination filenames. I used the hostname to keep track of which Conductor the backup belonged to.
 
 #### Step 4: Cleanup and logout
 
 Now the files are sent over to the remote server, we can safely delete the tar file generated containing the flash backup. The config backup can still and will just be overwritten everytime the script runs.
 
-On the Conductor, the endpoint is **/v1/configuration/object/tar_flash_clean**, which will delete any .tar files living in the directrory you specify. In our case we're cleaning the **/md** directory on the Conductor.
+On the Conductor, the endpoint is `/v1/configuration/object/tar_flash_clean`, which will delete any .tar files living in the directrory you specify. In our case we're cleaning the `/md` directory on the Conductor.
 
 Here's the function I wrote to do that:
 
-Lastly, we log out of the conductor by making a GET to the **/v1/api/logout** API endpoint. Here's the code function I made for that. In this, I use an **api_get** function that look very similar to the function to login from **Step 1**
+Lastly, we log out of the conductor by making a GET to the `/v1/api/logout` API endpoint. Here's the code function I made for that. In this, I use an `api_get` function that look very similar to the function to login from **Step 1**
 
 #### Email notifications
 
-After the flash is cleaned, we can check the JSON responses from the **/v1/configuration/object/copy_flash_scp** endpoint where we copied the two files over. In this script, I have those responses store in memory so I can check them here. What we are looking for in the JSON response is the value within the **status** key. If the status is **SUCCESS**, then we mark that one as good. Otherwise, it's marked as a failure.
+After the flash is cleaned, we can check the JSON responses from the `/v1/configuration/object/copy_flash_scp` endpoint where we copied the two files over. In this script, I have those responses store in memory so I can check them here. What we are looking for in the JSON response is the value within the `status` key. If the status is **SUCCESS**, then we mark that one as good. Otherwise, it's marked as a failure.
 
-All of the successes (and hopefully non failures) get composed into an email using the **email** and **smtplib** Python modules. Our organization has an accessible SMTP Relay server so it made it very simple to use that to send my team an email.
+All of the successes (and hopefully non failures) get composed into an email using the `email` and `smtplib` Python modules. Our organization has an accessible SMTP Relay server so it made it very simple to use that to send my team an email.
 
 Here's what that function looks like:
 
@@ -123,9 +123,15 @@ Here's what that function looks like:
 
 ## Testing out how this looks
 
+
 `code_with_underscores`
+
 **bold_with_underscores**
+
 _italic text_
-**bold with `code` inside**
+
+`bold with `code` inside`
+
 [link with `code`](https://arubanetworking.hpe.com/techdocs/ArubaOS-8.x-Books/AOS-8.x-API-Guide.pdf)
+
 ![image](/images/IMG_8921.jpg)
