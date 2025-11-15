@@ -4,13 +4,13 @@
 
 ### Overview
 
-This is a fully automated backup solution for using Python, SCP, and the APIs of the Aruba Mobility Conductors. In our environment, we have several conductors that manage hundreds of Managed Devices (MDs), which are WLAN controllers. The goal of this project was to ensure that the flash storage and full configuration of each Mobility Conductor was backed in a secure location up every week, and that the process was fully automated.
+This is a fully automated backup solution for using Python, SCP, and the APIs of the Aruba Mobility Conductors. In our environment, we have several conductors that manage hundreds of Managed Devices (MDs), which are WLAN controllers. The goal of this project was to ensure that the flash storage and full configuration of each Mobility Conductor was backed in a secure location every week, and that the process was fully automated.
 
 ![MC-Backup](/images/mc-backup.png)
 
 ### Why I made this
 
-You need backups for your important network infrastructure devices, it's as simple as that. Having that solution done in a fully automated manor is preferable. Mistakes will be limited and if a backup should fail for any reason, we will be notified.
+You need backups for your important network infrastructure devices, it's as simple as that. Having that solution done in a fully automated manner is preferable. Mistakes will be limited and if a backup should fail for any reason, we will be notified.
 
 ### Impact
 
@@ -44,7 +44,7 @@ def login(ip, username, password):
 
 #### Step 2: Creating a backup running config and flash
 
-These is kind of two steps lumped into one, but I'll explain both. First we need a function to make POST requests to the conductor. I'll specify which parameters we will set further down.
+This is kind of two steps lumped into one, but I'll explain both. First we need a function to make POST requests to the conductor. I'll specify which parameters we will set further down.
 
 Here's my function for making POST requests:
 
@@ -127,9 +127,9 @@ def scp_to_swair(ip, hostname, token, cookies, scp_user, scp_pass):
 
 #### Step 4: Cleanup and logout
 
-Now the files are sent over to the remote server, we can safely delete the tar file generated containing the flash backup. The config backup can still and will just be overwritten everytime the script runs.
+Now the files are sent over to the remote server, we can safely delete the tar file generated containing the flash backup. The config backup can stay and will just be overwritten everytime the script runs.
 
-On the Conductor, the endpoint is `/v1/configuration/object/tar_flash_clean`, which will delete any .tar files living in the directrory you specify. In our case we're cleaning the `/md` directory on the Conductor.
+On the Conductor, the endpoint is `/v1/configuration/object/tar_flash_clean`, which will delete any .tar files living in the directory you specify. In our case we're cleaning the `/md` directory on the Conductor.
 
 Here's the function I wrote to do that:
 
@@ -155,15 +155,14 @@ def logout(ipAddr, token, cookies):
 
 #### Email notifications
 
-After the flash is cleaned, we can check the JSON responses from the `/v1/configuration/object/copy_flash_scp` endpoint where we copied the two files over. In this script, I have those responses store in memory so I can check them here. What we are looking for in the JSON response is the value within the `status` key. If the status is **SUCCESS**, then we mark that one as good. Otherwise, it's marked as a failure.
+After the flash is cleaned, we can check the JSON responses from the `/v1/configuration/object/copy_flash_scp` endpoint where we copied the two files over. In this script, I have those responses stored in memory so I can check them here. What we are looking for in the JSON response is the value within the `status` key. If the status is **SUCCESS**, then we mark that one as good. Otherwise, it's marked as a failure.
 
-All of the successes (and hopefully non failures) get composed into an email using the `email` and `smtplib` Python modules. Our organization has an accessible SMTP Relay server so it made it very simple to use that to send my team an email.
+All of the successes (and hopefully no failures) get composed into an email using the `email` and `smtplib` Python modules. Our organization has an accessible SMTP Relay server so it made it very to send my team an email.
 
 Here's what that function looks like:
 
 ```
 def send_email_report(results, smtp_server, smtp_port, sender_email, recipient_email):
-    """Send email report with backup results via SMTP relay"""
     
     # Count successes and failures
     success_count = sum(1 for r in results if r['status'] == 'SUCCESS')
@@ -206,9 +205,11 @@ Detailed Results:
         print(f"\nFailed to send email report: {e}")
 ```
 
-#### Cron Job
+#### Completing the automation
 
+I had to test the script a few times to make sure all went well and it did what I wanted. Something I considered was whether or not to add asychronous functionality to speed it up, but I decided to keep it sequential so I wasn't slamming the SCP server with several connections at once. All in all, it only takes about 4 minutes to get through a dozen Mobility Conductors.
 
+I didn't go over the main function, but essential it uses all the functions posted above. The credentials get stored in a `.env` file and loaded securely. The cron job is configured to run every Saturday at 6am, and the email gets sent out to my team with a status on all the Conductors at that time.
 
 ### References
 
