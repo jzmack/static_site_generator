@@ -1,6 +1,6 @@
 # ADGroupManager
 
-[< Back Home](/)
+[< Back](/projects)
 
 Check out the GitHub link below for full documentation and source code. Or the full blog post for more detail on how this project came about.
 

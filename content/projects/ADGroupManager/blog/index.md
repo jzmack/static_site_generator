@@ -1,6 +1,6 @@
 # ADGroupManager Blog post
 
-[< Back Home](/)
+[< Back Home](/projects/ADGroupManager)
 
 ## Intro
 
