@@ -26,6 +26,10 @@ Successfully added User5 (user) to the WLAN Users group.
 
 Our previous process managing AD group memberships was time-consuming, click intensive, and exhausting for a long list of users. See the next section to see the stats on how much time is saved. This module serves as a great example of how putting in some up front work to automate a task can return long term dividends.
 
+>
+>"Thanks to Jake and his wonderful AD scripting tool what would’ve taken a decent amount of time took less than a minute. 189 accounts added just like that."
+>-- One happy co-worker
+
 ### Time saving impact
 
 - **Manually:** It takes **~81s** for the first user and **~21s** per additional user
