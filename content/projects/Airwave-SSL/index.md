@@ -12,11 +12,11 @@ This visual is oversimplified and just for reference. I'll be getting into the s
 
 ## Why I made this
 
-Since we only have to update the certificates once per year, there isn't significant time savings like with my other project, the [ADGroupManager PowerShell module](/projects/ADGroupManager). So this one is more for the "because it's cool" factor, and at the same time, it didn't take a ton of effort to build it. Also, we have over a dozen AirWave servers in our fleet and I don't know, doing something a dozen times in a row gets boring. And hey, when it is that time of year again, it'll be super easy and take less than 5 mintutes.
+Since we only have to update the certificates once per year, there isn't significant time savings like with my other project, the [ADGroupManager PowerShell module](/projects/ADGroupManager). So this one is more for the "because it's cool" factor, and at the same time, it didn't take a ton of effort to build it. Also, we have over a dozen AirWave servers in our fleet and I don't know, doing something a dozen times in a row gets boring. And hey, when it is that time of year again, it'll be super easy and only takes a few minutes.
 
 ## How it works
 
-The first step here is the only manual requirement, the rest of this section will go over how the Python script works with the SCP server and AirWave APIs. Refer to the picture above to reference.
+The first step here is the only manual requirement, the rest of this section will go over how the Python script works with the SCP server and AirWave APIs. Refer to the picture above.
 
 ### Obtaining the new certificate
 
@@ -100,7 +100,7 @@ def login_to_airwave(session, amp_ip):
 
 ### Installing SSL Cert via API
 
-The endpoint here is `/api/add_ssl_certificate`, which will be a POST, and requires the base64 encoded **certificate** as well as the **password** passed as parameters. In the headers of this request, I'll be adding the **X-BISCOTTI** token get got earlier.
+The endpoint here is a POST request to `/api/add_ssl_certificate`, and requires the base64 encoded **certificate** as well as the **password** passed as parameters. In the headers of this request, I'll be adding the **X-BISCOTTI** token get got earlier.
 
 Below is the function I use for this. Note that one of the arguments is `session`. This is a session set up from the `requests` Python module.
 
@@ -154,7 +154,7 @@ airwave2:
   name: wan
 ```
 
- This next function will read the YML file. In the for loop, you can see that the name and IP address of each server gets extracted from each item in the YAML file. Further in the loop, we log into each server and get the **X-BISCOTTI** token, then use the `install_ssl_cert` function I defined above on each server.
+ This next function will read the YAML file. In the for loop, you can see that the name and IP address of each server gets extracted from each item in the YAML file. Further in the loop, we log into each server and get the **X-BISCOTTI** token, then use the `install_ssl_cert` function I defined above on each server.
 
  ```
  def process_servers(yaml_file, encoded_cert):

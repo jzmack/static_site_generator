@@ -8,6 +8,13 @@ Welcome to my lil man cave, personal blog, whatever you wanna call it. Here, I'l
 >
 > -- Socrates
 
+## Sections
+
+- [Project Portfolio](/projects)
+- [Video Games](/video-games)
+- [Ice and Fire](/ice-and-fire)
+- [Hip Hop & Music (in progress)](/)
+
 ## Latest blog posts
 
 - [Top 5 Fights in Game of Thrones](/blog/top-fights)
@@ -16,14 +23,6 @@ Welcome to my lil man cave, personal blog, whatever you wanna call it. Here, I'l
 - [Horizon Zero Dawn Review](/video-games/horizon-zero-dawn)
 - [The Witcher 3](/video-games/witcher-wildhunt)
 
-## Sections
-
-- [Project Portfolio](/projects)
-- [Video Games](/video-games)
-- [Ice and Fire](/ice-and-fire)
-- [Hip Hop & Music (in progress)](/)
-
----
 
 Special thanks to [this course](https://www.boot.dev/courses/build-static-site-generator-python) on [Boot.dev](https://www.boot.dev) that made this site possible. 
 
