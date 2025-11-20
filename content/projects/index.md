@@ -8,6 +8,7 @@ These are some of the projects that as a network engineer/server admin, I feel w
 >
 > -- Sir Erik Christopher Zeeman
 
+- [Pingsweeper](/projects/pingsweeper)
 - [ADGroupManager](/projects/ADGroupManager)
 - [Fully Automated MC Backups](/projects/mc-backup)
 - [AirWave Auto-SSL install](/projects/Airwave-SSL)
